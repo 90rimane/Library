@@ -46,7 +46,7 @@ namespace Library
                 try
                 {
                     age = int.Parse(Console.ReadLine());
-                    if(age > minAgeLimit && age < maxAgeLimit)
+                    if(age >= minAgeLimit && age < maxAgeLimit)
                     {
                         break;
                     }
@@ -58,8 +58,12 @@ namespace Library
                 catch (Exception)
                 {
 
-                    throw;
+                    Console.WriteLine("Write an integer,please:");
                 }
+            }
+            while (true)
+            {
+                Console.WriteLine();
             }
 
         }
