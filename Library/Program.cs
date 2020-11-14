@@ -85,6 +85,7 @@ namespace Library
                 }
                 if (gender == "X" || gender == "Y")
                 {
+                    Console.WriteLine(gender);
                     break;
                 }
                 else
@@ -131,6 +132,9 @@ namespace Library
                 "Gender:     {2}\n" +
                 "Email:      {3}\n" +
                 "login pass: {4}",name,age, empl.GenderPronoum(empl.Gender), email,pass);
+            
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey(true);
         }
     }
     class Employee
