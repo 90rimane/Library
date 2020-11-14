@@ -8,7 +8,7 @@ namespace Library
 {
     class Program
     {
-        static void Main(string[] args) 
+        static void Main(string[] args)
         {
 
         }
@@ -22,6 +22,9 @@ namespace Library
             int age;
             int maxAgeLimit = 65;
             int minAgeLimit = 18;
+            string gender = "Y";
+            ConsoleKeyInfo inputGender;
+            string email;
 
             Console.Clear();
             Console.WriteLine("####### ADD EMPLOYEE #######");
@@ -46,13 +49,13 @@ namespace Library
                 try
                 {
                     age = int.Parse(Console.ReadLine());
-                    if(age >= minAgeLimit && age < maxAgeLimit)
+                    if (age >= minAgeLimit && age < maxAgeLimit)
                     {
                         break;
                     }
                     else
                     {
-                        Console.WriteLine("Employees age is invalid");
+                        Console.WriteLine("Employee's age is invalid");
                     }
                 }
                 catch (Exception)
@@ -61,10 +64,48 @@ namespace Library
                     Console.WriteLine("Write an integer,please:");
                 }
             }
+            //Enter gender
             while (true)
             {
-                Console.WriteLine();
+                Console.WriteLine("Enter Employee's gender: Female= X / Male= Y");
+                try
+                {
+                    inputGender = Console.ReadKey(true);       // get input from user as ConsoleKeyInfo
+                    gender = inputGender.Key.ToString();       // Convert ConsoleKeyInfo to string
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                if (gender == "X" || gender == "Y")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Enter only X or Y");
+                }
             }
+            //Enter email
+            while (true)
+            {
+                Console.WriteLine("Enter Employee's Email:");
+                try
+                {
+                    email = Console.ReadLine();
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            //Enter pass
+            while (true)
+            {
+
+            }
+
 
         }
     }
