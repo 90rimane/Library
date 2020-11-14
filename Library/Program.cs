@@ -157,6 +157,12 @@ namespace Library
                 }
             }
             Console.WriteLine("Enter employee number from list to remove him/her from list.");
+            int index;
+            while (true)
+            {
+                index = Convert.ToInt32(Console.ReadLine()) - 1;    //'-1' used to get the array index instead of the employees number on the list
+                
+            }
         }
     }
     class Employee
