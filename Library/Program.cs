@@ -20,7 +20,8 @@ namespace Library
         Employee[] employee = new Employee[20];     // defult number of employees: 20 persons
         public void Run()
         {
-            AddEmployee();
+            //AddEmployee();
+            RemoveEmployee();
         }
         private void AddEmployee()
         {
@@ -135,6 +136,27 @@ namespace Library
             
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey(true);
+        }
+        private void RemoveEmployee()
+        {
+            int employeeNumber = 0;
+
+            Console.Clear();
+            Console.WriteLine("\t\t####### REMOVE EMPLOYEE #######");
+            //Print Employee
+            foreach(Employee person in employee)
+            {
+                employeeNumber++;
+                if (person == null)
+                {
+                    Console.WriteLine("{0}_ Not employee registered.",employeeNumber);
+                }
+                else
+                {
+                    Console.WriteLine("{0}_ {1}",employeeNumber, person.Name);
+                }
+            }
+            Console.WriteLine("Enter employee number from list to remove him/her from list.");
         }
     }
     class Employee
