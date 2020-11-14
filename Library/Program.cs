@@ -10,12 +10,18 @@ namespace Library
     {
         static void Main(string[] args)
         {
-
+            var admin = new Library();
+            admin.Run();
+            Console.ReadKey(true);
         }
     }
     class Library
     {
         Employee[] employee = new Employee[20];     // defult number of employees: 20 persons
+        public void Run()
+        {
+            AddEmployee();
+        }
         private void AddEmployee()
         {
             string name;
@@ -100,13 +106,30 @@ namespace Library
                     Console.WriteLine(ex.Message);
                 }
             }
-            //Enter pass
-            while (true)
+            //Random log in pass
+            Random random = new Random();
+            int pass = random.Next(1000, 9999);
+            
+            //
+            for (int i = 0; i < employee.Length - 1; i++)
             {
-
+                if (employee[i] == null)
+                {
+                    employee[i] = new Employee(name,age,gender,email,pass);
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
             }
-
-
+            Console.WriteLine("\n" +
+                "The new Employee added as:\n" +
+                "Name:       {0}\n" +
+                "Age:        {1}\n" +
+                "Gender:     {2}\n" +
+                "Email:      {3}\n" +
+                "login pass: {4}",name,age,gender,email,pass);
         }
     }
     class Employee
