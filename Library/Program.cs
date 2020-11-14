@@ -33,7 +33,7 @@ namespace Library
             string email;
 
             Console.Clear();
-            Console.WriteLine("####### ADD EMPLOYEE #######");
+            Console.WriteLine("\t\t####### ADD EMPLOYEE #######");
             //Write name
             while (true)
             {
@@ -123,13 +123,14 @@ namespace Library
                     continue;
                 }
             }
+            Employee empl = new Employee(name,age,gender,email,pass);
             Console.WriteLine("\n" +
                 "The new Employee added as:\n" +
                 "Name:       {0}\n" +
                 "Age:        {1}\n" +
                 "Gender:     {2}\n" +
                 "Email:      {3}\n" +
-                "login pass: {4}",name,age,gender,email,pass);
+                "login pass: {4}",name,age, empl.GenderPronoum(empl.Gender), email,pass);
         }
     }
     class Employee
@@ -147,6 +148,20 @@ namespace Library
         public string Gender { get; set; }
         public string Email { get; set; }
         public int Pass { get; set; }
+
+        public string GenderPronoum(string gender)
+        {
+            switch (gender)
+            {
+                case "X":
+                    gender = "Female";
+                    break;
+                case "Y":
+                    gender = "Male";
+                    break;
+            }
+            return gender;
+        }
 
     }
 }
