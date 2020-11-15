@@ -136,7 +136,7 @@ namespace Library
            
             if (!File.Exists(newFileName))
             {
-                string nameHeader = "ID" + "," +"Name" + "," +"Gender"+","+"Email"+","+"Login"+","+" pass" + Environment.NewLine;
+                string nameHeader = "ID" + "," +"Name" + "," +"Gender"+","+"Email"+","+"Login"+","+"Password" + Environment.NewLine;
                 File.WriteAllText(newFileName, nameHeader);
             }
            
@@ -145,8 +145,7 @@ namespace Library
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey(true);
         }
-
-        private void RemoveEmployee()
+        private void ListEmployee()
         {
             var column1 = new List<string>();
             using (var rd = new StreamReader(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv"))
@@ -161,6 +160,22 @@ namespace Library
             Console.WriteLine("Employees List:\n");
             foreach (var element in column1)
                 Console.WriteLine(element);
+        }
+
+        private void RemoveEmployee()
+        {
+            Console.WriteLine("Enter employee ID: Ex: 900727"); //900727
+            int input = int.Parse(Console.ReadLine());
+            List<String> lines = new List<string>();
+            string line;
+            StreamReader file = new StreamReader(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv");
+
+            while ((line = file.ReadLine()) != null)
+            {
+                lines.Add(line);
+            }
+
+            lines.RemoveAll(l => l.Contains(input.ToString()));
         }
     }
     class Employee
