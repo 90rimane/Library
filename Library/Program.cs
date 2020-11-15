@@ -20,21 +20,38 @@ namespace Library
         Employee[] employee = new Employee[20];     // defult number of employees: 20 persons
         public void Run()
         {
-            //AddEmployee();
-            RemoveEmployee();
+            AddEmployee();
+            //RemoveEmployee();
         }
         private void AddEmployee()
         {
+            int id;
             string name;
-            int age;
-            int maxAgeLimit = 65;
-            int minAgeLimit = 18;
             string gender = "Y";
             ConsoleKeyInfo inputGender;
             string email;
+            
 
             Console.Clear();
             Console.WriteLine("\t\t####### ADD EMPLOYEE #######");
+            //ID number
+            while (true)
+            {
+                Console.WriteLine("Employee ID:");
+                Console.WriteLine("Enter employee's date of birth in 6 digits'yymmdd':");
+                try
+                {
+                    int birth = Convert.ToInt32(Console.ReadLine());
+                    Random randomm = new Random();
+                    int randomBirth = randomm.Next(100, 999);
+                    id = birth + randomBirth;
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
             //Write name
             while (true)
             {
@@ -49,28 +66,7 @@ namespace Library
                     Console.WriteLine(ex.Message);
                 }
             }
-            //Enter gender
-            while (true)
-            {
-                Console.WriteLine("Employee age:");
-                try
-                {
-                    age = int.Parse(Console.ReadLine());
-                    if (age >= minAgeLimit && age < maxAgeLimit)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Employee's age is invalid");
-                    }
-                }
-                catch (Exception)
-                {
-
-                    Console.WriteLine("Write an integer,please:");
-                }
-            }
+            
             //Enter gender
             while (true)
             {
@@ -110,14 +106,14 @@ namespace Library
             }
             //Random log in pass
             Random random = new Random();
-            int pass = random.Next(1000, 9999);
+            int pass = random.Next(10000, 99999);
             
             //
             for (int i = 0; i < employee.Length - 1; i++)
             {
                 if (employee[i] == null)
                 {
-                    employee[i] = new Employee(name,age,gender,email,pass);
+                    employee[i] = new Employee(id,name,gender,email,pass);
                     break;
                 }
                 else
@@ -125,18 +121,20 @@ namespace Library
                     continue;
                 }
             }
-            Employee empl = new Employee(name,age,gender,email,pass);
+            Employee empl = new Employee(id,name,gender,email,pass);
             Console.WriteLine("\n" +
                 "The new Employee added as:\n" +
-                "Name:       {0}\n" +
-                "Age:        {1}\n" +
+                "ID:       {0}\n" +
+                "name:        {1}\n" +
                 "Gender:     {2}\n" +
                 "Email:      {3}\n" +
-                "login pass: {4}",name,age, empl.GenderPronoum(empl.Gender), email,pass);
+                "login pass: {4}",id, name, empl.GenderPronoum(empl.Gender), email,pass);
+
             
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey(true);
         }
+
         private void RemoveEmployee()
         {
             int employeeNumber = 0;
@@ -167,16 +165,16 @@ namespace Library
     }
     class Employee
     {
-        public Employee(string name, int age, string gender, string email, int pass)
+        public Employee(int id,string name, string gender, string email, int pass)
         {
+            Id = id;
             Name = name;
-            Age = age;
             Gender = gender;
             Email = email;
             Pass = pass;
         }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int Age { get; set; }
         public string Gender { get; set; }
         public string Email { get; set; }
         public int Pass { get; set; }
