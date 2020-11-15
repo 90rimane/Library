@@ -13,7 +13,7 @@ namespace Library
         {
             var admin = new Library();
             admin.Run();
-            //Console.ReadKey(true);
+            Console.ReadKey(true);
         }
     }
     class Library
@@ -136,7 +136,7 @@ namespace Library
            
             if (!File.Exists(newFileName))
             {
-                string nameHeader = "ID" + "," +"Name" + "," +"Gender"+","+"Email"+","+"Login pass" + Environment.NewLine;
+                string nameHeader = "ID" + "," +"Name" + "," +"Gender"+","+"Email"+","+"Login"+","+" pass" + Environment.NewLine;
                 File.WriteAllText(newFileName, nameHeader);
             }
            
@@ -148,30 +148,19 @@ namespace Library
 
         private void RemoveEmployee()
         {
-            int employeeNumber = 0;
-
-            Console.Clear();
-            Console.WriteLine("\t\t####### REMOVE EMPLOYEE #######");
-            //Print Employee
-            foreach(Employee person in employee)
+            var column1 = new List<string>();
+            using (var rd = new StreamReader(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv"))
             {
-                employeeNumber++;
-                if (person == null)
+                while (!rd.EndOfStream)
                 {
-                    Console.WriteLine("{0}_ Not employee registered.",employeeNumber);
-                }
-                else
-                {
-                    Console.WriteLine("{0}_ {1}",employeeNumber, person.Name);
+                    var splits = rd.ReadLine().Split(';');
+                    column1.Add(splits[0]);
                 }
             }
-            Console.WriteLine("Enter employee number from list to remove him/her from list.");
-            int index;
-            while (true)
-            {
-                index = Convert.ToInt32(Console.ReadLine()) - 1;    //'-1' used to get the array index instead of the employees number on the list
-                
-            }
+            // print column1
+            Console.WriteLine("Employees List:\n");
+            foreach (var element in column1)
+                Console.WriteLine(element);
         }
     }
     class Employee
