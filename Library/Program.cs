@@ -21,8 +21,8 @@ namespace Library
         Employee[] employee = new Employee[20];     // defult number of employees: 20 persons
         public void Run()
         {
-            AddEmployee();
-            //RemoveEmployee();
+            //AddEmployee();
+            RemoveEmployee();
         }
         private void AddEmployee()
         {
