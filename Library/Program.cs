@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Library
 {
@@ -12,7 +13,7 @@ namespace Library
         {
             var admin = new Library();
             admin.Run();
-            Console.ReadKey(true);
+            //Console.ReadKey(true);
         }
     }
     class Library
@@ -29,15 +30,14 @@ namespace Library
             string name;
             string gender = "Y";
             ConsoleKeyInfo inputGender;
-            string email;
-            
+            string email;            
 
             Console.Clear();
             Console.WriteLine("\t\t####### ADD EMPLOYEE #######");
             //ID number
             while (true)
             {
-                Console.WriteLine("Employee ID:");
+                Console.WriteLine("Employee's ID prefix:");
                 Console.WriteLine("Enter employee's date of birth in 6 digits'yymmdd':");
                 try
                 {
@@ -65,8 +65,7 @@ namespace Library
                 {
                     Console.WriteLine(ex.Message);
                 }
-            }
-            
+            }            
             //Enter gender
             while (true)
             {
@@ -109,7 +108,7 @@ namespace Library
             int pass = random.Next(10000, 99999);
             
             //
-            for (int i = 0; i < employee.Length - 1; i++)
+            for (int i = 0; i < employee.Length - 1; i++)       ////'-1' used to get the array index instead of the employees number on the list
             {
                 if (employee[i] == null)
                 {
@@ -121,16 +120,28 @@ namespace Library
                     continue;
                 }
             }
-            Employee empl = new Employee(id,name,gender,email,pass);
+
+            Employee emplo = new Employee(id,name,gender,email,pass);          
             Console.WriteLine("\n" +
                 "The new Employee added as:\n" +
-                "ID:       {0}\n" +
-                "name:        {1}\n" +
+                "ID:         {0}\n" +
+                "Name:       {1}\n" +
                 "Gender:     {2}\n" +
                 "Email:      {3}\n" +
-                "login pass: {4}",id, name, empl.GenderPronoum(empl.Gender), email,pass);
+                "login pass: {4}", id, name, emplo.GenderPronoum(emplo.Gender), email, pass);
 
-            
+
+            string newFileName = @"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv";
+            string nameDetails = id + "," + name + "," + emplo.GenderPronoum(emplo.Gender)+","+ email +","+ pass;
+           
+            if (!File.Exists(newFileName))
+            {
+                string nameHeader = "ID" + "," +"Name" + "," +"Gender"+","+"Email"+","+"Login pass" + Environment.NewLine;
+                File.WriteAllText(newFileName, nameHeader);
+            }
+           
+            File.AppendAllText(newFileName, nameDetails + Environment.NewLine);
+
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey(true);
         }
