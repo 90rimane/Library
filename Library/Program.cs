@@ -148,30 +148,7 @@ namespace Library
 
         private void RemoveEmployee()
         {
-            int employeeNumber = 0;
 
-            Console.Clear();
-            Console.WriteLine("\t\t####### REMOVE EMPLOYEE #######");
-            //Print Employee
-            foreach(Employee person in employee)
-            {
-                employeeNumber++;
-                if (person == null)
-                {
-                    Console.WriteLine("{0}_ Not employee registered.",employeeNumber);
-                }
-                else
-                {
-                    Console.WriteLine("{0}_ {1}",employeeNumber, person.Name);
-                }
-            }
-            Console.WriteLine("Enter employee number from list to remove him/her from list.");
-            int index;
-            while (true)
-            {
-                index = Convert.ToInt32(Console.ReadLine()) - 1;    //'-1' used to get the array index instead of the employees number on the list
-                
-            }
         }
     }
     class Employee
