@@ -13,7 +13,7 @@ namespace Library
         {
             var admin = new Library();
             admin.Run();
-            //Console.ReadKey(true);
+            Console.ReadKey(true);
         }
     }
     class Library
@@ -21,8 +21,8 @@ namespace Library
         Employee[] employee = new Employee[20];     // defult number of employees: 20 persons
         public void Run()
         {
-            AddEmployee();
-            //RemoveEmployee();
+            //AddEmployee();
+            RemoveEmployee();
         }
         private void AddEmployee()
         {
@@ -136,7 +136,7 @@ namespace Library
            
             if (!File.Exists(newFileName))
             {
-                string nameHeader = "ID" + "," +"Name" + "," +"Gender"+","+"Email"+","+"Login pass" + Environment.NewLine;
+                string nameHeader = "ID" + "," +"Name" + "," +"Gender"+","+"Email"+","+"Login"+","+" pass" + Environment.NewLine;
                 File.WriteAllText(newFileName, nameHeader);
             }
            
@@ -148,7 +148,19 @@ namespace Library
 
         private void RemoveEmployee()
         {
-
+            var column1 = new List<string>();
+            using (var rd = new StreamReader(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv"))
+            {
+                while (!rd.EndOfStream)
+                {
+                    var splits = rd.ReadLine().Split(';');
+                    column1.Add(splits[0]);
+                }
+            }
+            // print column1
+            Console.WriteLine("Employees List:\n");
+            foreach (var element in column1)
+                Console.WriteLine(element);
         }
     }
     class Employee
