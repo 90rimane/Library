@@ -21,7 +21,8 @@ namespace Library
         Employee[] employee = new Employee[20];     // defult number of employees: 20 persons
         public void Run()
         {
-            //AddEmployee();
+            //while (true) { AddEmployee(); }
+            //ListEmployee();
             RemoveEmployee();
         }
         private void AddEmployee()
@@ -30,7 +31,7 @@ namespace Library
             string name;
             string gender = "Y";
             ConsoleKeyInfo inputGender;
-            string email;            
+            string email;
 
             Console.Clear();
             Console.WriteLine("\t\t####### ADD EMPLOYEE #######");
@@ -65,7 +66,7 @@ namespace Library
                 {
                     Console.WriteLine(ex.Message);
                 }
-            }            
+            }
             //Enter gender
             while (true)
             {
@@ -106,13 +107,13 @@ namespace Library
             //Random log in pass
             Random random = new Random();
             int pass = random.Next(10000, 99999);
-            
+
             //
             for (int i = 0; i < employee.Length - 1; i++)       ////'-1' used to get the array index instead of the employees number on the list
             {
                 if (employee[i] == null)
                 {
-                    employee[i] = new Employee(id,name,gender,email,pass);
+                    employee[i] = new Employee(id, name, gender, email, pass);
                     break;
                 }
                 else
@@ -121,7 +122,7 @@ namespace Library
                 }
             }
 
-            Employee emplo = new Employee(id,name,gender,email,pass);          
+            Employee emplo = new Employee(id, name, gender, email, pass);
             Console.WriteLine("\n" +
                 "The new Employee added as:\n" +
                 "ID:         {0}\n" +
@@ -132,55 +133,47 @@ namespace Library
 
 
             string newFileName = @"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv";
-            string nameDetails = id + "," + name + "," + emplo.GenderPronoum(emplo.Gender)+","+ email +","+ pass;
-           
+            string nameDetails = id + ",\t" + name + ",\t" + emplo.GenderPronoum(emplo.Gender) + ",\t" + email + ",\t" + pass;
+
             if (!File.Exists(newFileName))
             {
-                string nameHeader = "ID" + "," +"Name" + "," +"Gender"+","+"Email"+","+"Login"+","+"Password" + Environment.NewLine;
+                string nameHeader = "ID" + ",\t" + "Name" + ",\t" + "Gender" + ",\t" + "Email" + ",\t" + "Login Pass" + Environment.NewLine;
                 File.WriteAllText(newFileName, nameHeader);
             }
-           
+
             File.AppendAllText(newFileName, nameDetails + Environment.NewLine);
+
 
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey(true);
         }
         private void ListEmployee()
         {
-            var column1 = new List<string>();
-            using (var rd = new StreamReader(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv"))
+            var lines = File.ReadLines(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv");
+            foreach (var line in lines)
             {
-                while (!rd.EndOfStream)
-                {
-                    var splits = rd.ReadLine().Split(';');
-                    column1.Add(splits[0]);
-                }
+                Console.WriteLine(line);
             }
-            // print column1
-            Console.WriteLine("Employees List:\n");
-            foreach (var element in column1)
-                Console.WriteLine(element);
         }
 
         private void RemoveEmployee()
         {
-            Console.WriteLine("Enter employee ID: Ex: 900727"); //900727
-            int input = int.Parse(Console.ReadLine());
-            List<String> lines = new List<string>();
-            string line;
-            StreamReader file = new StreamReader(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv");
-
-            while ((line = file.ReadLine()) != null)
+            string[] lines = File.ReadAllLines(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv");
+            var id = Console.ReadLine();
+            List<string> linesToWrite = new List<string>();
+            foreach (string s in lines)
             {
-                lines.Add(line);
-            }
+                String[] split = s.Split(' ');
+                if (s.Contains(id))
+                    linesToWrite.Remove(s);
 
-            lines.RemoveAll(l => l.Contains(input.ToString()));
+            }
+            File.WriteAllLines("file3.csv", linesToWrite);
         }
     }
     class Employee
     {
-        public Employee(int id,string name, string gender, string email, int pass)
+        public Employee(int id, string name, string gender, string email, int pass)
         {
             Id = id;
             Name = name;
