@@ -18,11 +18,12 @@ namespace Library
     }
     class Library
     {
+        
         Employee[] employee = new Employee[20];     // defult number of employees: 20 persons
         public void Run()
         {
-            //while (true) { AddEmployee(); }
-            //ListEmployee();
+            AddEmployee();
+            ListEmployee();
             RemoveEmployee();
         }
         private void AddEmployee()
@@ -133,11 +134,11 @@ namespace Library
 
 
             string newFileName = @"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv";
-            string nameDetails = id + ",\t" + name + ",\t" + emplo.GenderPronoum(emplo.Gender) + ",\t" + email + ",\t" + pass;
+            string nameDetails = id + "," + name + "," + emplo.GenderPronoum(emplo.Gender) + "," + email + "," + pass;
 
             if (!File.Exists(newFileName))
             {
-                string nameHeader = "ID" + ",\t" + "Name" + ",\t" + "Gender" + ",\t" + "Email" + ",\t" + "Login Pass" + Environment.NewLine;
+                string nameHeader = "ID" + "," + "Name" + "," + "Gender" + "," + "Email" + "," + "Login Pass" + Environment.NewLine;
                 File.WriteAllText(newFileName, nameHeader);
             }
 
@@ -158,17 +159,31 @@ namespace Library
 
         private void RemoveEmployee()
         {
-            string[] lines = File.ReadAllLines(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv");
-            var id = Console.ReadLine();
-            List<string> linesToWrite = new List<string>();
-            foreach (string s in lines)
-            {
-                String[] split = s.Split(' ');
-                if (s.Contains(id))
-                    linesToWrite.Remove(s);
+            //string id = "950851";
+            //List<String> lines = new List<string>();
+            //string line;
+            //StreamReader file = new StreamReader(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv");
 
+            //while ((line = file.ReadLine()) != null)
+            //{
+            //    lines.Add(line);
+            //}
+
+            //lines.RemoveAll(l => l.Contains.Tolist());
+            string[] values = File.ReadAllText(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv").Split(new char[] { ',' });
+            StringBuilder ObjStringBuilder = new StringBuilder();
+            Console.WriteLine("Enter name:");
+            string input= Console.ReadLine();
+            for (int i = 0; i < values.Length; i++)
+            {
+                if (values[i].Contains(input))
+                    continue;
+                ObjStringBuilder.Append(values[i] + ",");
             }
-            File.WriteAllLines("file3.csv", linesToWrite);
+            ObjStringBuilder.ToString().Remove(ObjStringBuilder.Length - 1);
+            File.WriteAllText(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv", ObjStringBuilder.ToString());
+
+
         }
     }
     class Employee
