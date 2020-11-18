@@ -41,5 +41,11 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MylibraryLibrary\MylibraryLibrary.csproj">
+      <Project>{ca23f305-5e01-4d6a-8473-f9ae2a1ab9a0}</Project>
+      <Name>MylibraryLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

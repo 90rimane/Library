@@ -1,0 +1,9 @@
+C:\Users\Rima\Desktop\Uppgift01\Library\MylibraryLibrary\bin\Debug\netstandard2.0\MylibraryLibrary.deps.json
+C:\Users\Rima\Desktop\Uppgift01\Library\MylibraryLibrary\bin\Debug\netstandard2.0\MylibraryLibrary.dll
+C:\Users\Rima\Desktop\Uppgift01\Library\MylibraryLibrary\bin\Debug\netstandard2.0\MylibraryLibrary.pdb
+C:\Users\Rima\Desktop\Uppgift01\Library\MylibraryLibrary\obj\Debug\netstandard2.0\MylibraryLibrary.AssemblyInfoInputs.cache
+C:\Users\Rima\Desktop\Uppgift01\Library\MylibraryLibrary\obj\Debug\netstandard2.0\MylibraryLibrary.AssemblyInfo.cs
+C:\Users\Rima\Desktop\Uppgift01\Library\MylibraryLibrary\obj\Debug\netstandard2.0\MylibraryLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Rima\Desktop\Uppgift01\Library\MylibraryLibrary\obj\Debug\netstandard2.0\MylibraryLibrary.dll
+C:\Users\Rima\Desktop\Uppgift01\Library\MylibraryLibrary\obj\Debug\netstandard2.0\MylibraryLibrary.pdb
+C:\Users\Rima\Desktop\Uppgift01\Library\MylibraryLibrary\obj\Debug\netstandard2.0\MylibraryLibrary.csprojAssemblyReference.cache

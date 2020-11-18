@@ -1,0 +1,10 @@
+C:\Users\Rima\Desktop\Uppgift01\Library\Library\bin\Debug\Library.exe.config
+C:\Users\Rima\Desktop\Uppgift01\Library\Library\bin\Debug\Library.exe
+C:\Users\Rima\Desktop\Uppgift01\Library\Library\bin\Debug\Library.pdb
+C:\Users\Rima\Desktop\Uppgift01\Library\Library\obj\Debug\CosoleApp.csprojAssemblyReference.cache
+C:\Users\Rima\Desktop\Uppgift01\Library\Library\obj\Debug\CosoleApp.csproj.CoreCompileInputs.cache
+C:\Users\Rima\Desktop\Uppgift01\Library\Library\obj\Debug\CosoleApp.csproj.CopyComplete
+C:\Users\Rima\Desktop\Uppgift01\Library\Library\obj\Debug\Library.exe
+C:\Users\Rima\Desktop\Uppgift01\Library\Library\obj\Debug\Library.pdb
+C:\Users\Rima\Desktop\Uppgift01\Library\Library\bin\Debug\MylibraryLibrary.dll
+C:\Users\Rima\Desktop\Uppgift01\Library\Library\bin\Debug\MylibraryLibrary.pdb
