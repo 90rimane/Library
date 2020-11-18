@@ -18,13 +18,54 @@ namespace Library
     }
     class Library
     {
-        
+
         Employee[] employee = new Employee[20];     // defult number of employees: 20 persons
         public void Run()
         {
-            AddEmployee();
-            ListEmployee();
-            RemoveEmployee();
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("###### Hallo Admin... ######");
+                Console.WriteLine("\nWhat you want to do:\n" +
+                                      "[A] Add Employee\n" +
+                                      "[R] Remove Employee\n" +
+                                      "[L] List Employee\n" +
+                                      "[E] Exit");
+                ConsoleKeyInfo inputFromUser = Console.ReadKey(true);
+                switch (inputFromUser.Key)                                  //switch case för huvud meny
+                {
+                    // Add Employee
+                    case ConsoleKey.A:
+                        {
+                            AddEmployee();
+                            break;
+                        }
+
+                    // tabort passagerar
+                    case ConsoleKey.R:
+                        {
+                            RemoveEmployee();
+                            break;
+                        }
+                    // passagerar
+                    case ConsoleKey.L:
+                        {
+                            ListEmployee();
+                            break;
+                        }
+                    case ConsoleKey.E:
+                        {
+                            Environment.Exit(0);
+                            return;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("Please choose something in the menu");
+                            break;
+                        }
+                }
+            }
         }
         private void AddEmployee()
         {
@@ -155,25 +196,17 @@ namespace Library
             {
                 Console.WriteLine(line);
             }
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey(true);
         }
 
         private void RemoveEmployee()
         {
-            //string id = "950851";
-            //List<String> lines = new List<string>();
-            //string line;
-            //StreamReader file = new StreamReader(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv");
-
-            //while ((line = file.ReadLine()) != null)
-            //{
-            //    lines.Add(line);
-            //}
-
-            //lines.RemoveAll(l => l.Contains.Tolist());
             string[] values = File.ReadAllText(@"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv").Split(new char[] { ',' });
             StringBuilder ObjStringBuilder = new StringBuilder();
             Console.WriteLine("Enter name:");
-            string input= Console.ReadLine();
+            string input = Console.ReadLine();
             for (int i = 0; i < values.Length; i++)
             {
                 if (values[i].Contains(input))
