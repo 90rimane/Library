@@ -19,6 +19,7 @@ namespace MylibraryLibrary
         public string Gender { get; set; }
         public string Email { get; set; }
         public int Pass { get; set; }
+        public bool IsAdminEditable { get; set; }
 
         public string GenderPronoum(string gender)
         {
