@@ -4,9 +4,9 @@ using System.Text;
 
 namespace MylibraryLibrary
 {
-    public class Employee
+    public class Person
     {
-        public Employee(int id, string name, string gender, string email, int pass)
+        public Person(int id, string name, string gender, string email, int pass)
         {
             Id = id;
             Name = name;
@@ -19,7 +19,7 @@ namespace MylibraryLibrary
         public string Gender { get; set; }
         public string Email { get; set; }
         public int Pass { get; set; }
-        public bool IsAdminEditable { get; set; }
+        public bool IsAdmin { get; set; }
 
         public string GenderPronoum(string gender)
         {

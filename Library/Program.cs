@@ -10,14 +10,14 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             Admin admin = new Admin();
-            admin.Run();
+            admin.RunAdmin();
             Console.ReadKey(true);
         }
     }
     public class Admin
     {
-        readonly Employee[] employee = new Employee[20];     // defult number of employees: 20 persons
-        public void Run()
+        readonly Person[] employee = new Person[20];     // defult number of employees: 20 persons
+        public void RunAdmin()
         {
 
             while (true)
@@ -153,7 +153,7 @@ namespace ConsoleApp
             {
                 if (employee[i] == null)
                 {
-                    employee[i] = new Employee(id, name, gender, email, pass);
+                    employee[i] = new Person(id, name, gender, email, pass);
                     break;
                 }
                 else
@@ -162,7 +162,7 @@ namespace ConsoleApp
                 }
             }
 
-            Employee emplo = new Employee(id, name, gender, email, pass);
+            Person emplo = new Person(id, name, gender, email, pass);
             Console.WriteLine("\n" +
                 "The new Employee added as:\n" +
                 "ID:         {0}\n" +
@@ -172,16 +172,21 @@ namespace ConsoleApp
                 "login pass: {4}", id, name, emplo.GenderPronoum(emplo.Gender), email, pass);
 
 
-            
-            string nameDetails = id + "," + name + "," + emplo.GenderPronoum(emplo.Gender) + "," + email + "," + pass;
 
-            if (!File.Exists(path))
-            {
-                string nameHeader = "ID" + "," + "Name" + "," + "Gender" + "," + "Email" + "," + "Login Pass" + Environment.NewLine;
-                File.WriteAllText(path, nameHeader);
-            }
+            //string nameDetails = id + "," + name + "," + emplo.GenderPronoum(emplo.Gender) + "," + email + "," + pass;
 
-            File.AppendAllText(path, nameDetails + Environment.NewLine);
+            //if (!File.Exists(path))
+            //{
+            //    string nameHeader = "ID" + "," + "Name" + "," + "Gender" + "," + "Email" + "," + "Login Pass" + Environment.NewLine;
+            //    File.WriteAllText(path, nameHeader);
+            //}
+
+            //File.AppendAllText(path, nameDetails + Environment.NewLine);
+
+            StreamWriter file = new StreamWriter(path, true);
+            file.WriteLine (id + "," +name + "," + gender+ "," + email + "," + pass);
+
+
 
 
             Console.WriteLine("\nPress any key to continue...");
@@ -217,6 +222,13 @@ namespace ConsoleApp
             ObjStringBuilder.ToString().Remove(ObjStringBuilder.Length - 1);
             File.WriteAllText(path, ObjStringBuilder.ToString());
 
+
+        }
+    }
+    public class Employee
+    {
+        public void RunEmployee()
+        {
 
         }
     }
