@@ -180,11 +180,10 @@ namespace ConsoleApp
         }
         private void ListEmployee()
         {
-            string path = @"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv";
             Console.Clear();
             Console.WriteLine("\t####### LIS EMPLOYEE #######\n");
 
-            var lines = File.ReadLines(path);
+            var lines = File.ReadLines(Path());
             foreach (var line in lines)
             {
                 Console.WriteLine(line);

@@ -8,7 +8,6 @@ namespace ConsoleApp
     {
         public void RunEmployee()
         {
-            //Console.WriteLine(@"Enter path: EX:C:\EmployeeList.csv");
             Path();
             Console.Clear();
             Console.WriteLine("\t####### MY PROFILE #######\n");
@@ -40,7 +39,7 @@ namespace ConsoleApp
         }
         public string Path()
         {
-            //return @"C:\Users\Rima\Desktop\Uppgift01\Library\PersonList.csv"; //
+            //return @"C:\Users\Rima\Desktop\Uppgift01\Library\PersonList.csv"; 
             return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"PesonList.csv";
         }
         private void EditEmployee()
