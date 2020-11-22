@@ -40,9 +40,8 @@ namespace ConsoleApp
         }
         public string Path()
         {
-            //string path = Console.ReadLine();
-            string path = @"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv"; //
-            return path;
+            //return @"C:\Users\Rima\Desktop\Uppgift01\Library\PersonList.csv"; //
+            return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"PesonList.csv";
         }
         private void EditEmployee()
         {
@@ -65,46 +64,81 @@ namespace ConsoleApp
                 {
                     case ConsoleKey.N:
                         {
-                            Console.WriteLine("\nEnter old name to remove:");
-                            string oldName = Console.ReadLine();
+                            while (true)
+                            {
+                                try
+                                {
+                                    Console.WriteLine("\nEnter old name to remove:");
+                                    string oldName = Console.ReadLine();
 
-                            Console.WriteLine("Enter new name");
-                            string newName = Console.ReadLine();
+                                    Console.WriteLine("Enter new name");
+                                    string newName = Console.ReadLine();
 
-                            Console.WriteLine("{0} Removed. {1} added.", oldName, newName);
-                            string reName = EmpInf.Replace(oldName, newName);
+                                    Console.WriteLine("{0} Removed. {1} added.", oldName, newName);
+                                    string reName = EmpInf.Replace(oldName, newName);
 
-                            File.WriteAllText(Path(), reName + Environment.NewLine);
+                                    File.WriteAllText(Path(), reName + Environment.NewLine);
+                                }
+                                catch (Exception)
+                                {
+
+                                    Console.WriteLine("Enter correct format.");
+                                }
+                                break;
+                            }
 
                             break;
                         }
                     case ConsoleKey.E:
                         {
-                            Console.WriteLine("\nEnter old email to remove:");
-                            string oldName = Console.ReadLine();
+                            while (true)
+                            {
+                                try
+                                {
+                                    Console.WriteLine("\nEnter old email to remove:");
+                                    string oldName = Console.ReadLine();
 
-                            Console.WriteLine("Enter new email");
-                            string newName = Console.ReadLine();
+                                    Console.WriteLine("Enter new email");
+                                    string newName = Console.ReadLine();
 
-                            Console.WriteLine("{0} Removed. {1} added.", oldName, newName);
-                            string reName = EmpInf.Replace(oldName, newName);
+                                    Console.WriteLine("{0} Removed. {1} added.", oldName, newName);
+                                    string reName = EmpInf.Replace(oldName, newName);
 
-                            File.WriteAllText(Path(), reName + Environment.NewLine);
+                                    File.WriteAllText(Path(), reName + Environment.NewLine);
+                                }
+                                catch (Exception)
+                                {
+                                    Console.WriteLine("Invalid format");
+                                }
+                                break;
+                            }
 
                             break;
                         }
                     case ConsoleKey.P:
                         {
-                            Console.WriteLine("\nEnter old passwor to remove:");
-                            string oldName = Console.ReadLine();
+                            while (true)
+                            {
+                                try
+                                {
+                                    Console.WriteLine("\nEnter old passwor to remove:");
+                                    string oldName = Console.ReadLine();
 
-                            Console.WriteLine("Enter new password");
-                            string newName = Console.ReadLine();
+                                    Console.WriteLine("Enter new password");
+                                    string newName = Console.ReadLine();
 
-                            Console.WriteLine("{0} Removed. {1} added.", oldName, newName);
-                            string reName = EmpInf.Replace(oldName, newName);
+                                    Console.WriteLine("{0} Removed. {1} added.", oldName, newName);
+                                    string reName = EmpInf.Replace(oldName, newName);
 
-                            File.WriteAllText(Path(), reName + Environment.NewLine);
+                                    File.WriteAllText(Path(), reName + Environment.NewLine);
+
+                                }
+                                catch (Exception)
+                                {
+                                    Console.WriteLine("Invalid format.");
+                                }
+                                    break;
+                            }
 
                             break;
                         }
@@ -116,6 +150,8 @@ namespace ConsoleApp
                     default:
                         {
                             Console.WriteLine("Please choose something in the menu");
+                            Console.WriteLine("\nPress any key to continue...");
+                            Console.ReadKey(true);
                             break;
                         }
                 }

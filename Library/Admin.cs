@@ -54,9 +54,8 @@ namespace ConsoleApp
         }
         public string Path()
         {
-            //string path = Console.ReadLine();
-            string path = @"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv";
-            return path;
+            //return @"C:\Users\Rima\Desktop\Uppgift01\Library\PersonList.csv";
+            return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"PesonList.csv";
         }
         private void AddEmployee()
         {
