@@ -1,53 +1,59 @@
 ﻿using MylibraryLibrary;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
     public class Employee
     {
-        string path = @"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv";
         public void RunEmployee()
         {
-            List<String> lines = new List<String>();
-            StreamReader reader = new StreamReader(File.OpenRead(path));
+            Console.Clear();
+            Console.WriteLine("\t####### Edit MY PROFILE #######\n");
+            Path();
+            EditEmployee();
+        }
+        public string Path()
+        {
+            //Console.WriteLine("Enter directory path:");
+            //string path = Console.ReadLine();
+            string path = @"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv";
+            return path;
+        }
+        public void EditEmployee()
+        {
+            string EmpInf = GetEmployeeInfo(); //900856 , 910641
+            Console.WriteLine("ID number belongs to:\n" + EmpInf);
+
+            Console.WriteLine("Enter old name to be removed:");
+            string oldName = Console.ReadLine();
+
+            Console.WriteLine("Enter new name:");
+            string newName = Console.ReadLine();
+
+            Console.WriteLine("{0} Replaced to {1}.",oldName,newName);
+            string reName = EmpInf.Replace(oldName, newName);//3 tedade hazv shodande
+
+            File.AppendAllText(Path(), reName + Environment.NewLine);
+            
+
+            Console.ReadKey();
+        }
+        private String GetEmployeeInfo()
+        {
+            Console.WriteLine("Enter your ID number:");
+            String searchName = Console.ReadLine();
+            var strLines = File.ReadLines(Path());
+            foreach (var line in strLines)
             {
-                String line;
-                while ((line = reader.ReadLine()) != null)
+                
+                if (line.Split(',')[0].Equals(searchName))
                 {
-                    if (line.Contains(","))
-                    {
-                        String[] split = line.Split(',');
-
-                        if (split[1] == "abc")//condition for Edit record like : split[1] == "abc" etc.
-                        {
-                            //update that
-                            split[1] = "xyz";
-                            line = String.Join(",", split);
-                            lines.Add(line);
-                        }
-                        if (!File.Exists(path))//condition for Delete row.
-                        {
-                            //don't add that row into string list
-                        }
-                    }
-
+                    return line.Split(',')[0] + "," + line.Split(',')[1] + "," + line.Split(',')[2] + "," + line.Split(',')[3] + "," + line.Split(',')[4];
+                    
                 }
             }
-
-            using (StreamWriter writer = new StreamWriter(path, false))
-            {
-                foreach (String line in lines)
-                    writer.WriteLine(line);
-            }
-
+            return "";
         }
-
-
     }
-
 }
