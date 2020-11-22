@@ -1,16 +1,12 @@
 ﻿using System;
-using MylibraryLibrary;
-using System.IO;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ConsoleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            
             Console.Clear();
             Console.WriteLine("###### Library Simulator ######");
             Console.WriteLine("\nEnter a command:\n" +
@@ -48,7 +44,7 @@ namespace ConsoleApp
             int UserID, password;
             int ctr = 0;
             Console.Write("\n\nAdmin Login:\n");
-            Console.Write("Default ID and PassWord : 123456 and 12345\n");
+            Console.Write("Default ID and PassWord : 123456 and 1234\n");
             do
             {
                 while (true)
@@ -61,11 +57,11 @@ namespace ConsoleApp
                         Console.Write("Enter a password: ");
                         password = int.Parse(Console.ReadLine());
 
-                        if (UserID != 123456 || password != 12345)
+                        if (UserID != 123456 || password != 1234)
                             ctr++;
                         else
                             ctr = 1;
-                            Console.WriteLine("Invalid ID or pass word.\n");
+                            Console.WriteLine("\n");
                         break;
                     }
                     catch (Exception)
@@ -93,7 +89,7 @@ namespace ConsoleApp
             int UserID, password;
             int ctr = 0;
             Console.Write("\n\nEmploye Login:\n");
-            Console.Write("Default ID and PassWord : 123456 and 12345\n");
+            Console.Write("Default ID and PassWord : 123456 and 1234\n");
             do
             {
                 while (true)
@@ -106,11 +102,11 @@ namespace ConsoleApp
                         Console.Write("Enter a password: ");
                         password = int.Parse(Console.ReadLine());
 
-                        if (UserID != 123456 || password != 12345)
+                        if (UserID != 123456 || password != 1234)
                             ctr++;
                         else
                             ctr = 1;
-                        Console.WriteLine("Invalid ID or pass word.\n");
+                        Console.WriteLine("\n");
                         break;
                     }
                     catch (Exception)
@@ -133,6 +129,5 @@ namespace ConsoleApp
                 emplo.RunEmployee();
             }
         }
-
     }
 }
