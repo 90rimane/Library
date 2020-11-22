@@ -9,9 +9,10 @@ namespace ConsoleApp
     {
         readonly Person[] employee = new Person[20];     // defult number of employees: 20 persons
         public void RunAdmin()
-        { 
+        {
             while (true)
             {
+                Console.WriteLine(@"Enter path: EX:C:\EmployeeList.csv");
                 Path();
                 Console.Clear();
                 Console.WriteLine("###### Hallo Admin ######");
@@ -19,26 +20,26 @@ namespace ConsoleApp
                                   "[A] Add Employee\n" +
                                   "[R] Remove Employee\n" +
                                   "[L] List Employee\n" +
-                                  "[E] Exit");
+                                  "[X] Exit");
                 ConsoleKeyInfo inputFromUser = Console.ReadKey(true);
-                switch (inputFromUser.Key)                                  //switch case för huvud meny
+                switch (inputFromUser.Key)
                 {
                     case ConsoleKey.A:
                         {
                             AddEmployee();
                             break;
-                        }                    
+                        }
                     case ConsoleKey.R:
                         {
                             RemoveEmployee();
                             break;
-                        }                    
+                        }
                     case ConsoleKey.L:
                         {
                             ListEmployee();
                             break;
                         }
-                    case ConsoleKey.E:
+                    case ConsoleKey.X:
                         {
                             Environment.Exit(0);
                             return;
@@ -210,10 +211,11 @@ namespace ConsoleApp
                     continue;
                 ObjStrBuilder.Append(values[i] + ",");
             }
-            ObjStrBuilder.ToString().Remove(0,ObjStrBuilder.Length-1);
+            ObjStrBuilder.ToString().Remove(0, ObjStrBuilder.Length - 1);
             File.WriteAllText(Path(), ObjStrBuilder.ToString());
 
-
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey(true);
         }
     }
 }

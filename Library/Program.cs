@@ -6,37 +6,39 @@ namespace ConsoleApp
     {
         public static void Main(string[] args)
         {
-            
-            Console.Clear();
-            Console.WriteLine("###### Library Simulator ######");
-            Console.WriteLine("\nEnter a command:\n" +
-                              "[A] Admin\n" +
-                              "[E] Employee\n" +
-                              "[X] Exit");
-            ConsoleKeyInfo inputFromUser = Console.ReadKey(true);
-            switch (inputFromUser.Key)                                  //switch case för huvud meny
-            {              
-                case ConsoleKey.A:
-                    {
-                        LoginAdmin();
-                                               
-                        break;
-                    }
-                case ConsoleKey.E:
-                    {
-                        LoginEmployee();
-                        break;
-                    }
-                case ConsoleKey.X:
-                    {
-                        Environment.Exit(0);
-                        return;
-                    }
-                default:
-                    {
-                        Console.WriteLine("Please choose something in the menu");
-                        break;
-                    }     
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("###### Library Simulator ######");
+                Console.WriteLine("\nEnter a command:\n" +
+                                  "[A] Admin\n" +
+                                  "[E] Employee\n" +
+                                  "[X] Exit");
+                ConsoleKeyInfo inputFromUser = Console.ReadKey(true);
+                switch (inputFromUser.Key)
+                {
+                    case ConsoleKey.A:
+                        {
+                            LoginAdmin();
+
+                            break;
+                        }
+                    case ConsoleKey.E:
+                        {
+                            LoginEmployee();
+                            break;
+                        }
+                    case ConsoleKey.X:
+                        {
+                            Environment.Exit(0);
+                            return;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("Please choose something in the menu");
+                            break;
+                        }
+                }
             }
         }
         private static void LoginAdmin()
@@ -61,14 +63,14 @@ namespace ConsoleApp
                             ctr++;
                         else
                             ctr = 1;
-                            Console.WriteLine("\n");
+                        Console.WriteLine("\n");
                         break;
                     }
                     catch (Exception)
                     {
                         Console.WriteLine("Enter in correct format");
                     }
-                    
+
                 }
             }
             while ((UserID != 123456 && password != 1234) && (ctr != 3));

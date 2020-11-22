@@ -8,49 +8,131 @@ namespace ConsoleApp
     {
         public void RunEmployee()
         {
-            Console.Clear();
-            Console.WriteLine("\t####### Edit MY PROFILE #######\n");
+            //Console.WriteLine(@"Enter path: EX:C:\EmployeeList.csv");
             Path();
-            EditEmployee();
+            Console.Clear();
+            Console.WriteLine("\t####### MY PROFILE #######\n");
+
+            Console.WriteLine("Enter your ID number:");
+            String searchItem = Console.ReadLine();
+
+            string EmpInf = GetEmployeeInfo(searchItem); //
+            Console.WriteLine("ID number belongs to:\n" + EmpInf);
+
+            Console.WriteLine("\nEnter a command:\n" +
+                             "[E] Edit my profile\n" +
+                             "[X] Exit");
+            ConsoleKeyInfo inputFromUser = Console.ReadKey(true);
+            switch (inputFromUser.Key)
+            {
+                case ConsoleKey.E:
+                    {
+                        EditEmployee();
+
+                        break;
+                    }
+                case ConsoleKey.X:
+                    {
+                        Environment.Exit(0);
+                        return;
+                    }
+            }
         }
         public string Path()
         {
-            //Console.WriteLine("Enter directory path:");
             //string path = Console.ReadLine();
-            string path = @"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv";
+            string path = @"C:\Users\Rima\Desktop\Uppgift01\Library\EmployeeList.csv"; //
             return path;
         }
-        public void EditEmployee()
+        private void EditEmployee()
         {
-            string EmpInf = GetEmployeeInfo(); //900856 , 910641
-            Console.WriteLine("ID number belongs to:\n" + EmpInf);
+            Console.WriteLine("\nEnter your ID number:");
+            String searchItem = Console.ReadLine();
 
-            Console.WriteLine("Enter old name to be removed:");
-            string oldName = Console.ReadLine();
+            while (true)
+            {
+                string EmpInf = GetEmployeeInfo(searchItem); //
+                Console.Clear();
+                Console.WriteLine("ID number belongs to:\n" + EmpInf);
+                Console.WriteLine("\nWhat you want to do:\n" +
+                      "[N] Change Name\n" +
+                      "[E] Change Email\n" +
+                      "[P] Change Pass\n" +
+                      "[X] Exit");
 
-            Console.WriteLine("Enter new name:");
-            string newName = Console.ReadLine();
+                ConsoleKeyInfo inputFromUser = Console.ReadKey(true);
+                switch (inputFromUser.Key)
+                {
+                    case ConsoleKey.N:
+                        {
+                            Console.WriteLine("\nEnter old name to remove:");
+                            string oldName = Console.ReadLine();
 
-            Console.WriteLine("{0} Replaced to {1}.",oldName,newName);
-            string reName = EmpInf.Replace(oldName, newName);//3 tedade hazv shodande
+                            Console.WriteLine("Enter new name");
+                            string newName = Console.ReadLine();
 
-            File.AppendAllText(Path(), reName + Environment.NewLine);
-            
+                            Console.WriteLine("{0} Removed. {1} added.", oldName, newName);
+                            string reName = EmpInf.Replace(oldName, newName);
 
-            Console.ReadKey();
+                            File.WriteAllText(Path(), reName + Environment.NewLine);
+
+                            break;
+                        }
+                    case ConsoleKey.E:
+                        {
+                            Console.WriteLine("\nEnter old email to remove:");
+                            string oldName = Console.ReadLine();
+
+                            Console.WriteLine("Enter new email");
+                            string newName = Console.ReadLine();
+
+                            Console.WriteLine("{0} Removed. {1} added.", oldName, newName);
+                            string reName = EmpInf.Replace(oldName, newName);
+
+                            File.WriteAllText(Path(), reName + Environment.NewLine);
+
+                            break;
+                        }
+                    case ConsoleKey.P:
+                        {
+                            Console.WriteLine("\nEnter old passwor to remove:");
+                            string oldName = Console.ReadLine();
+
+                            Console.WriteLine("Enter new password");
+                            string newName = Console.ReadLine();
+
+                            Console.WriteLine("{0} Removed. {1} added.", oldName, newName);
+                            string reName = EmpInf.Replace(oldName, newName);
+
+                            File.WriteAllText(Path(), reName + Environment.NewLine);
+
+                            break;
+                        }
+                    case ConsoleKey.X:
+                        {
+                            Environment.Exit(0);
+                            return;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("Please choose something in the menu");
+                            break;
+                        }
+                }
+            }
         }
-        private String GetEmployeeInfo()
+        private String GetEmployeeInfo(string searchItem)
         {
-            Console.WriteLine("Enter your ID number:");
-            String searchName = Console.ReadLine();
+
             var strLines = File.ReadLines(Path());
             foreach (var line in strLines)
             {
-                
-                if (line.Split(',')[0].Equals(searchName))
+
+                if (line.Split(',')[0].Equals(searchItem))
                 {
+                    line.Remove(0, line.Length);
                     return line.Split(',')[0] + "," + line.Split(',')[1] + "," + line.Split(',')[2] + "," + line.Split(',')[3] + "," + line.Split(',')[4];
-                    
+
                 }
             }
             return "";
